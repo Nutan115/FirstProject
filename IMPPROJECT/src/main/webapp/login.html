@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(193, 247, 205)2;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 300px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 100px;
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent form submission
+            var loginType = document.getElementById("loginType").value;
+            var email = document.querySelector("input[name='email']").value;
+            var password = document.querySelector("input[name='password']").value;
+             
+            var adminEmail = "rs@email.com";
+            var adminPassword = "rs123";
+            
+            if (loginType === "admin") {
+            	if (email === adminEmail && password === adminPassword) {
+                window.location.href = "wel.html"; // Redirect to admin welcome page
+            }else{ 
+            	alert("Invalid admin credentials!");
+            }
+        }
+            else {
+                document.getElementById("loginForm").submit(); // Submit form normally for students
+            }
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <div class="container">
+            <h2>Login</h2>
+            <form id="loginForm" action="LoginServlet" method="post" onsubmit="handleLogin(event)">
+                <label>Login:</label>
+                <select name="login" id="loginType">
+                    <option value="student">Student login</option>
+                    <option value="admin">Admin login</option>
+                </select>
+                <label>Email:</label>
+                <input type="email" name="email" required>
+                <label>Password:</label>
+                <input type="password" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </center>
+</body>
+</html>
